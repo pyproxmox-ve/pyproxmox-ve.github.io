@@ -962,15 +962,14 @@
 </span></code></pre></div>
 </li>
 <li>
-<p>Initalise the API object with your API credentials</p>
+<p>Initialize the API object with your API credentials</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">api</span> <span class="o">=</span> <span class="n">ProxmoxVEAPI</span><span class="p">(</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://192.0.2.100:8006&quot;</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">realm</span><span class="o">=</span><span class="s2">&quot;pam&quot;</span><span class="p">,</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">api_token_id</span><span class="o">=</span><span class="s2">&quot;mytoken&quot;</span><span class="p">,</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">api_token</span><span class="o">=</span><span class="s2">&quot;abcd1234-efgh5678&quot;</span><span class="p">,</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">use_pydantic</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># Set to False if you didn&#39;t `pip install pyproxmox-ve[pydantic]`</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;root@pam&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">api_token_id</span><span class="o">=</span><span class="s2">&quot;mytoken&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">api_token</span><span class="o">=</span><span class="s2">&quot;abcd1234-efgh5678&quot;</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">use_pydantic</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># Set to False if you didn&#39;t `pip install pyproxmox-ve[pydantic]`</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span>
 </span></code></pre></div>
 </li>
 </ol>
@@ -987,6 +986,10 @@
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Bad Token Example</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="o">&gt;</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">client_exceptions</span><span class="o">.</span><span class="n">ClientResponseError</span><span class="p">:</span> <span class="mi">401</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;invalid token value!&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">URL</span><span class="p">(</span><span class="s1">&#39;https://192.0.2.100:8006/api2/json/version&#39;</span><span class="p">)</span>
 </span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you would like to not use the custom exceptions provided by this module, set <code>raise_exceptions</code> to False when initializing <code>ProxmoxVEAPI</code> and this will simply raise aiohttp ClientResponseError exceptions when Proxmox API returns a status code of <code>400</code> or higher. However using the inbuilt exceptions should improve both the troubleshooting and developer experience.</p>
+</div>
 
 
 
